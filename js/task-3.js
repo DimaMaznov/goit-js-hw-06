@@ -1,14 +1,33 @@
-"use strict";
+class StringBuilder {
 
-function getElementWidth (content, padding, border) 
+  #value = '' ;
 
-   {  
-    return (
-        Number.parseFloat(content) +
-        Number.parseFloat(padding) * 2 +
-        Number.parseFloat(border) * 2
-      );}
+constructor (initialValue) 
+{this.#value = initialValue}
 
-console.log(getElementWidth("50px", "8px", "4px"));
-console.log(getElementWidth("60px", "12px", "8.5px"));
-console.log(getElementWidth("200px", "0px", "0px"));
+getValue() {
+return this.#value;}
+
+
+padEnd(str) {
+  this.#value = this.#value + str;
+}
+
+padStart(str) {
+  this.#value = str + this.#value;
+}
+
+padBoth(str) {
+  this.#value = str + this.#value + str;
+}
+
+}
+
+const builder = new StringBuilder(".");
+console.log(builder.getValue()); // "."
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="
